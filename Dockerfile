@@ -7,7 +7,7 @@ ENV LC_ALL zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt add-apt-repository "deb http://cz.archive.ubuntu.com/ubuntu focal main"
+RUN add-apt-repository "deb http://cz.archive.ubuntu.com/ubuntu focal main"
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& echo 'Asia/Shanghai' >/etc/timezone \
