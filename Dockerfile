@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 WORKDIR /nonebot
 
-COPY . .
+COPY . /nonebot
 
 COPY docker/sources.list /etc/apt/sources.list.d/font.list
 
