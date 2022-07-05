@@ -7,6 +7,8 @@ ENV LC_ALL zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 ENV DEBIAN_FRONTEND noninteractive
 
+COPY docker/sources.list /etc/apt/sources.list
+
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& echo 'Asia/Shanghai' >/etc/timezone \
 	&& apt-get update --fix-missing -o Acquire::http::No-Cache=True \
