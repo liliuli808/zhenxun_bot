@@ -42,6 +42,8 @@ COPY  poetry.lock /
 
 RUN poetry install && poetry shell
 
+RUN playwright install chromium && playwright install-deps chromium
+
 
 WORKDIR /nonebot
 
