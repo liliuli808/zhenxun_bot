@@ -7,9 +7,7 @@ ENV LC_ALL zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 ENV DEBIAN_FRONTEND noninteractive
 
-COPY fonts-ubuntu_0.83-4_all.deb fonts-ubuntu_0.83-4_all.deb
-
-RUN dpkg -i fonts-ubuntu_0.83-4_all.deb
+COPY docker/sources.list /etc/apt/sources.list.d/font.list
 
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& echo 'Asia/Shanghai' >/etc/timezone \
