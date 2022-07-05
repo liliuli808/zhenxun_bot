@@ -24,7 +24,8 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	libgbm1 \
 	libgtk-3-0 \
 	libasound2 \
-    ttf-ubuntu-font-family
+    ttf-ubuntu-font-family \
+    && apt install -y --fix-missing python3.9
 
 RUN apt update && apt install -y libzbar0 locales locales-all fonts-noto
 
@@ -42,8 +43,6 @@ COPY  pyproject.toml /
 COPY  poetry.lock /
 
 RUN poetry install && poetry shell
-
-RUN playwright install chromium && playwright install-deps chromium
 
 
 WORKDIR /nonebot
