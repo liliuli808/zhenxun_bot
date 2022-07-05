@@ -23,9 +23,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	libxrandr2 \
 	libgbm1 \
 	libgtk-3-0 \
-	libasound2 \
-    ttf-ubuntu-font-family \
-    && apt install -y --fix-missing python3.9
+	libasound2
 
 RUN apt update && apt install -y libzbar0 locales locales-all fonts-noto
 
