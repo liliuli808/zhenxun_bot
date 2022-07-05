@@ -7,9 +7,7 @@ ENV LC_ALL zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 ENV DEBIAN_FRONTEND noninteractive
 
-WORKDIR /nonebot
-
-COPY . .
+COPY . /nonebot/.
 
 COPY docker/sources.list /etc/apt/sources.list.d/font.list
 
@@ -49,5 +47,7 @@ COPY  poetry.lock /
 RUN poetry install && poetry shell
 
 RUN playwright install chromium && playwright install-deps chromium
+
+WORKDIR /nonebot
 
 CMD ["python3", "bot.py"]
