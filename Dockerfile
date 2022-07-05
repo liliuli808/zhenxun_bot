@@ -7,6 +7,25 @@ ENV LC_ALL zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
+	&& echo 'Asia/Shanghai' >/etc/timezone \
+	&& apt-get update --fix-missing -o Acquire::http::No-Cache=True \
+	&& apt-get install -y --assume-yes apt-utils --no-install-recommends \
+	build-essential \
+	libgl1 \
+	libglib2.0-0 \
+	libnss3 \
+	libatk1.0-0 \
+	libatk-bridge2.0-0 \
+	libcups2 \
+	libxkbcommon0 \
+	libxcomposite1 \
+	libxrandr2 \
+	libgbm1 \
+	libgtk-3-0 \
+	libasound2 \
+    ttf-ubuntu-font-family
+
 RUN apt update && apt install -y libzbar0 locales locales-all fonts-noto
 
 RUN apt-get install -y libnss3-dev libxss1 libasound2 libxrandr2\
@@ -22,10 +41,9 @@ RUN pip install poetry \
 COPY  pyproject.toml /
 COPY  poetry.lock /
 
-RUN poetry lock --no-update && poetry export --without-hashes -f requirements.txt \
-  | poetry run pip install -r /dev/stdin
+RUN poetry install && poetry shell
 
-RUN playwright install chromium && playwright install-deps
+RUN playwright install chromium && playwright install-deps chromium
 
 
 WORKDIR /nonebot
