@@ -22,7 +22,7 @@ RUN pip install poetry \
 COPY  pyproject.toml /
 COPY  poetry.lock /
 
-RUN poetry export --without-hashes -f requirements.txt \
+RUN poetry lock --no-update && poetry export --without-hashes -f requirements.txt \
   | poetry run pip install -r /dev/stdin
 
 RUN playwright install chromium && playwright install-deps
