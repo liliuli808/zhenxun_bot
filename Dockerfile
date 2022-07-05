@@ -7,8 +7,6 @@ ENV LC_ALL zh_CN.UTF-8
 ENV TZ Asia/Shanghai
 ENV DEBIAN_FRONTEND noninteractive
 
-COPY docker/sources.list /etc/apt/sources.list
-
 RUN apt update && apt install -y libzbar0 locales locales-all fonts-noto
 
 RUN apt-get install -y libnss3-dev libxss1 libasound2 libxrandr2\
