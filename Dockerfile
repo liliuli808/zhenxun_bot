@@ -9,9 +9,11 @@ ENV DEBIAN_FRONTEND noninteractive
 
 COPY docker/sources.list /etc/apt/sources.list
 
+RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C
+
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
 	&& echo 'Asia/Shanghai' >/etc/timezone \
-	&& apt-get update --fix-missing -o Acquire::http::No-Cache=True \
+	&& apt-get update \
 	&& apt-get install -y --assume-yes apt-utils --no-install-recommends \
 	build-essential \
 	libgl1 \
